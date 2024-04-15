@@ -1,1 +1,362 @@
+C++ Programs of class and object
+
+Q1.
+#include <iostream>
+using namespace std;
+
+class Book {
+public:
+    int bid;
+    string bname;
+};
+
+int main() {
+	cout<<" Kanak Chaurasia "<<endl;
+	cout<<" 0827CY221030 "<<endl;
+	
+    Book obj;
+    obj.bid = 201;
+    obj.bname = " Atomic Habits ";
+
+    cout << " Book Name: " << obj.bname << endl;
+    cout << " Book ID: " << obj.bid << endl;
+
+    return 0;
+}
+
+
+
+Q2.
+//Inside definition
+#include <iostream>
+using namespace std;
+
+class Book {
+    int bid;
+    string bname;
+
+public:
+    void setData() {
+        cout << " Enter book ID: ";
+        cin >> bid;
+        cout << " Enter book name: ";
+        cin >> bname;
+    }
+};
+
+int main() {
+	cout<<" Kanak Chaurasia "<<endl;
+	cout<<" 0827CY221030 "<<endl;
+	
+    Book book;
+    book.setData();
+    return 0;
+}
+
+
+
+ 
+Q3.
+//Outside definition
+#include <iostream>
+using namespace std;
+
+class book {
+    int bid;
+    string bname;
+
+public:
+    void setdata();
+};
+
+void book::setdata() {
+    cout << " Enter book ID: ";
+    cin >> bid;
+    cout << "Enter book name: ";
+    cin >> bname;
+}
+
+int main() {
+	cout<<" Kanak Chaurasia "<<endl;
+	cout<<" 0827CY221030 "<<endl;
+
+    book b;
+    b.setdata();
+    return 0;
+}
+
+
+ 
+Q4.
+//Constructor and Destructor 
+#include<iostream>
+using namespace std;
+
+class book
+{
+	private:
+	int bid;
+	string b_name;
+	public:
+		book()
+		{
+		    cout<<" Enter book id";
+		    cin>>bid;
+			cout<<" Enter book name";
+			cin>>b_name;
+		}
+
+                  //Destructor
+                  ~book(){
+                  }
+
+		void display()
+		{
+			cout<<" book id is "<<bid<<endl;
+			cout<<" book name is "<<b_name<<endl;
+		}
+		
+};		
+
+int main()
+{
+	cout<<" Kanak Chaurasia"<<endl;
+	cout<<" 0827CY221030"<<endl;
+	book b1,b2;
+	b1.display();
+	b2.display();
+	return 0;
+}
+
+
+ 
+
+
+
+Q5.
+//Multi-level Inheritance
+#include <iostream>
+using namespace std;
+
+class Fruit {
+public:
+    void display() {
+        cout << "This is a fruit." << endl;
+    }
+};
+
+class Citrus : public Fruit {
+public:
+    void display() {
+        cout << "This is a citrus fruit." << endl;
+    }
+};
+
+class Orange : public Citrus {
+public:
+    void display() {
+        cout << "This is an orange fruit." << endl;
+    }
+};
+
+int main() {
+    cout<<" Kanak Chaurasia"<<endl;
+    cout<<" 0827CY221030"<<endl;
+
+    Orange orange;
+    orange.display();
+
+    return 0;
+}
+
+
+ 
+
+
+
+Q6.
+//Multiple Inheritance
+#include <iostream>
+using namespace std;
+
+class Student {
+public:
+    void study() {
+        cout << "Student is studying" << endl;
+    }
+};
+
+class TeachingAssistant {
+public:
+    void assist() {
+        cout << "Teaching Assistant is assisting" << endl;
+    }
+};
+
+class Person : public Student, public TeachingAssistant {
+public:
+    void introduce() {
+        cout << "Person is introducing" << endl;
+    }
+};
+int main() {
+    cout<<" Kanak Chaurasia"<<endl;
+    cout<<" 0827CY221030"<<endl;
+    Person p;
+    p.study();      
+    p.assist();     
+    p.introduce();  
+
+    return 0;
+}
+
+ 
+
+
+
+Q7.
+//Function Overloading
+#include<iostream>
+using namespace std;
+//Function overloading
+void sum(int a,int b){
+	cout<<" Sum of 2 integer is "<<(a+b)<<endl;
+}
+
+void sum(int a,int b,int c){
+	cout<<" Sum of 3 integer is "<<(a+b+c)<<endl;
+}
+
+void multiply(int p,int q){
+	cout<<" Multiply of 2 integer is "<<(p*q)<<endl;
+}
+
+void multiply(int p,int q,int r){
+	cout<<" Sum of 3 integer is "<<(p*q*r)<<endl;
+}
+
+int main(){
+	cout<<" Kanak Chaurasia"<<endl;
+	cout<<" 0827CY221030"<<endl;
+	
+	sum(3,5);
+	sum(4,7,9);
+	multiply(2,5);
+	multiply(6,1,9);
+	
+	return 0;
+}
+
+
+
+
+
+
+
+Q8.
+//Static function
+#include <iostream>
+using namespace std;
+
+class Car {
+    static int numberOfCars;
+
+public:
+    static void display() {
+        cout << " Number of cars: " << numberOfCars << endl;
+    }
+};
+
+int Car::numberOfCars = 15;
+
+int main() {
+	cout<<" Kanak Chaurasia"<<endl;
+	cout<<" 0827CY221030"<<endl;
+    
+	Car::display();
+
+    Car C1;
+    C1.display();
+
+    return 0;
+}
+
+
+ 
+
+
+
+Q9.
+//Inline Function
+#include<iostream>
+using namespace std;
+
+inline int area_of_rectangle(int length,int breadth){
+	int area;
+	
+	area=(length*breadth);
+	
+	return area;
+}
+
+int main(void){
+	cout<<" Kanak Chaurasia "<<endl;
+	cout<<" 0827CY221030 "<<endl;
+	
+	int l,b,a;
+	l=6;
+	b=4;
+	
+	a=area_of_rectangle(l,b);
+	
+	cout<<" Area = ( length * breadth ) ";
+	cout<<"where , length=6 , breadth=4 ";
+	cout<<"\n Area = "<<a<<endl;
+	
+	return 0;
+}
+
+
+ 
+
+
+
+Q10.
+//Friend Function
+#include<iostream>
+#include<string>
+using namespace std;
+
+class room{
+	private:
+		int length,breadth;
+		
+	public:
+	    void setdata(int x,int y){
+	    	length=x;
+	    	breadth=y;
+			}
+		void display(){
+			cout<<" length = "<<length<<endl;
+			cout<<" breadth = "<<breadth<<endl;
+		}friend void area(room a);		
+};
+void area(room a){
+	cout<<" Area is "<<a.length*a.breadth<<endl;
+}
+int main(){
+	cout<<" Kanak Chaurasia"<<endl;
+	cout<<" 0827CY221030"<<endl;
+	
+	room obj;
+	
+	obj.setdata(4,5);
+	obj.display();
+	area(obj);
+	
+	return 0;
+}
+
+
+
 
