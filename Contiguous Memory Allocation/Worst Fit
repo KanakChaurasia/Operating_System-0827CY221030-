@@ -1,55 +1,67 @@
-//Best fit
-#include <iostream>
+//Worst Fit
+#include<iostream>
 using namespace std;
 
-int main() {
-    int blocksize[10], processsize[10], blockno, processno, flags[10], allocation[10], i, j;
-
-    // Initialize flags and allocation arrays
-    for(i = 0; i < 10; i++) {
-        flags[i] = 0;
-        allocation[i] = -1;
-    }
-
-    // Entering blocks
-    cout<<"Number of blocks: ";
-    cin>>blockno;
-    cout<<"\nsize of each block: ";
-    for(i = 0; i < blockno; i++)
-        cin>>blocksize[i];
-
-    // Entering processes
-    cout<<"\nNumber of processes: ";
-    cin>>processno;
-    cout<<"\nEnter each process size: ";
-    for(i = 0; i < processno; i++)
-        cin>>processsize[i];
-
-    // Memory allocation as per best fit
-    for(i = 0; i < processno; i++) {
-        int bestFitIndex = -1;
-        for(j = 0; j < blockno; j++) {
-            if(flags[j] == 0 && blocksize[j] >= processsize[i]) {
-                if (bestFitIndex == -1 || blocksize[j] < blocksize[bestFitIndex]) {
-                    bestFitIndex = j;
-                }
-            }
-        }
-        if (bestFitIndex != -1) {
-            allocation[bestFitIndex] = i;
-            flags[bestFitIndex] = 1;
-        }
-    }
-
-    // Display allocation details
-    cout<<"\nBlock no.\t size\t \tprocess no. \t \tsize";
-    for(i = 0; i < blockno; i++) {
-        cout<<"\n"<<i<<"\t\t"<<blocksize[i]<<"\t\t";
-        if(flags[i] == 1)
-            cout<<allocation[i]<<"\t\t\t"<<processsize[allocation[i]];
-        else
-            cout<<"Not allocated";
-    }
-
-    return 0;
+int main(){
+	int block_size[10],
+	process_size[10],
+	block_no,
+	process_no,
+	flags[10],
+	allocation[10],i,j;
+	
+	for(i=0;i<10;i++){
+		flags[i]=0;
+		allocation[i]=-1;
+	}
+	
+	cout<<"Number of blocks:";
+	cin>>block_no;
+	cout<<"\n size of each block:";
+	
+	for(i=0;i<block_no;i++){
+		cin>>block_size[i];
+	}
+	
+	cout<<"Number of processes:";
+	cin>>process_no;
+	cout<<"\n size of each process:";
+	
+	for(i=0;i<block_no;i++){
+		cin>>process_size[i];
+	}
+	
+	for(i=0;i<process_no;i++){
+		int worst_index=-1;
+		for(j=0;j<block_no;j++){
+			if(flags[j]==0 && block_size[j]>=process_size[i]){
+				if(worst_index==-1 || block_size[j]>block_size[worst_index]){
+				worst_index=j;
+				}
+				allocation[j]=i;
+				flags[j]=1;
+				break;
+			}
+		}
+		
+	 	if(worst_index!=-1){
+			allocation[i]=worst_index;
+			block_size[worst_index]-=process_size[i];
+		}
+	}
+	
+	cout<<"\n Block no \t size \t process no \t \t size";
+	
+	for(i=0;i<block_no;i++){
+		cout<<"\n"<<i<<"\t\t"<<block_size[i]<<"\t\t";
+		if(flags[i]==1){
+			cout<<allocation[i]<<"\t\t\t"<<process_size[allocation[i]];
+		}
+		else{
+			cout<<"Not allocated";
+		}
+	}
+	
+	return 0;
+	
 }
